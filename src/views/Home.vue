@@ -93,16 +93,18 @@
 
         <!-- Projects grid -->
         <div v-else class="grid md:grid-cols-3 gap-6">
-          <div v-for="project in projects" :key="project._id"
-            class="border-2 border-amber-400 rounded-lg p-5 shadow hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white">
-            <img :src="project.image" alt="">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ project.title }}</h3>
-            <p class="text-gray-600 mb-3">{{ project.description }}</p>
-            <p class="text-sm text-red-800 font-medium">
-              Category: {{ project.category?.name || 'Uncategorized' }}
-            </p>
-            <a :href="project.link" target="_blank" rel="noopener" class="text-sm text-red-900 font-medium">Link</a>
-          </div>
+          <a :href="project.link" target="_blank" rel="noopener">
+            <div v-for="project in projects" :key="project._id"
+              class="border-2 border-amber-400 rounded-lg p-5 shadow hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white">
+              <img :src="project.image" alt="">
+              <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ project.title }}</h3>
+              <p class="text-gray-600 mb-3">{{ project.description }}</p>
+              <p class="text-sm text-red-800 font-medium">
+                Category: {{ project.category?.name || 'Uncategorized' }}
+              </p>
+              <a :href="project.link" target="_blank" rel="noopener" class="text-sm text-red-900 font-medium">Link</a>
+            </div>
+          </a>
         </div>
       </div>
     </section>
