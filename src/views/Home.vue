@@ -101,6 +101,7 @@
             <p class="text-sm text-red-800 font-medium">
               Category: {{ project.category?.name || 'Uncategorized' }}
             </p>
+            <a :href="project.link" target="_blank" rel="noopener" class="text-sm text-red-900 font-medium">Link</a>
           </div>
         </div>
       </div>
