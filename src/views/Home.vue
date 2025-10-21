@@ -70,15 +70,15 @@
 
       <!-- Line 2 (animated gradient name) -->
       <span
-        class="block bg-gradient-to-r from-red-800 via-amber-600 to-red-800 bg-[length:200%_200%] animate-gradient bg-clip-text text-transparent opacity-0 -translate-x-10 transition-all duration-700 delay-200"
+        class="block bg-gradient-to-r from-red-800 via-amber-600 to-red-800 bg-[length:200%_200%] animate-gradient bg-clip-text text-transparent opacity-0 -translate-x-10 transition-all duration-900 delay-500"
         :class="{ 'opacity-100 translate-x-0': showLine2 }"
       >
-        Nafii
+        Nafii.....
       </span>
 
       <!-- Line 3 -->
       <span
-        class="block opacity-0 -translate-x-10 transition-all duration-700 delay-300"
+        class="block opacity-0 -translate-x-10 transition-all duration-900 delay-500"
         :class="{ 'opacity-100 translate-x-0': showLine3 }"
       >
         Crafting modern web applications & digital experiences
@@ -87,7 +87,7 @@
 
     <!-- Paragraph -->
     <p
-      class="text-lg md:text-xl text-gray-800 leading-relaxed opacity-0 translate-y-4 transition-all duration-700 delay-500"
+      class="text-lg font-bold italics md:text-xl text-gray-800 leading-relaxed opacity-0 translate-y-4 transition-all duration-700 delay-500"
       :class="{ 'opacity-100 translate-y-0': showParagraph }"
     >
       I design and develop responsive, user-friendly web solutions that help ideas come to life.
