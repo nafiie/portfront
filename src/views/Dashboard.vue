@@ -1,74 +1,81 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col">
+  <div class="min-h-screen bg-gradient-to-br from-amber-50 to-white flex flex-col transition-all duration-500">
     <!-- ✅ Dashboard Header -->
-    <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-      <h1 class="text-2xl font-semibold text-gray-700">Admin Dashboard</h1>
+    <header class="bg-white/95 backdrop-blur-md shadow-lg py-4 px-6 flex justify-between items-center border-b-2 border-amber-400 transition-all duration-500">
+      <h1 class="text-2xl font-bold text-gray-800 transition-all duration-500">Admin Dashboard</h1>
       <button
         @click="logout"
-        class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+        class="bg-gradient-to-r from-red-800 to-amber-600 hover:from-red-900 hover:to-amber-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
       >
         Logout
       </button>
     </header>
 
     <!-- 📦 Main Content -->
-    <main class="flex-1 p-6">
+    <main class="flex-1 p-6 transition-all duration-500">
       <!-- Tabs -->
-      <div class="flex space-x-4 mb-6 border-b border-gray-200">
+      <div class="flex space-x-4 mb-6 border-b-2 border-amber-300 transition-all duration-500">
         <button
           @click="activeTab = 'projects'"
-          :class="activeTab === 'projects' ? activeTabClass : inactiveTabClass"
+          :class="activeTab === 'projects' ? 'border-b-2 border-amber-600 text-amber-700 font-semibold py-2 px-4 transition-all duration-300' : 'text-gray-600 hover:text-amber-600 py-2 px-4 transition-all duration-300'"
         >
           Projects
         </button>
         <button
           @click="activeTab = 'categories'"
-          :class="activeTab === 'categories' ? activeTabClass : inactiveTabClass"
+          :class="activeTab === 'categories' ? 'border-b-2 border-amber-600 text-amber-700 font-semibold py-2 px-4 transition-all duration-300' : 'text-gray-600 hover:text-amber-600 py-2 px-4 transition-all duration-300'"
         >
           Categories
+        </button>
+        <button
+          @click="activeTab = 'messages'"
+          :class="activeTab === 'messages' ? 'border-b-2 border-amber-600 text-amber-700 font-semibold py-2 px-4 transition-all duration-300' : 'text-gray-600 hover:text-amber-600 py-2 px-4 transition-all duration-300'"
+        >
+          Messages
         </button>
       </div>
 
       <!-- 🧱 PROJECTS TAB -->
       <section v-if="activeTab === 'projects'">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold">Manage Projects</h2>
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold text-gray-800 transition-all duration-500">Manage Projects</h2>
           <button
             @click="showProjectForm = true"
-            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            class="bg-gradient-to-r from-red-800 to-amber-600 hover:from-red-900 hover:to-amber-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             + Add Project
           </button>
         </div>
+        
 
         <!-- Project List -->
-        <div v-if="loading" class="text-gray-500">Loading...</div>
-        <div v-else class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div v-if="loading" class="text-gray-500 transition-all duration-500">Loading...</div>
+        <div v-else class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500">
           <div
             v-for="project in projects"
             :key="project._id"
-            class="border rounded p-4 bg-white shadow-sm"
+            class="border-2 border-amber-300 rounded-2xl p-4 bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
           >
             <img
               v-if="project.image"
               :src="project.image"
               alt="project image"
-              class="w-full h-48 object-cover mb-2 rounded"
+              class="w-full h-48 object-cover mb-3 rounded-xl"
             />
-            <h3 class="font-bold text-lg">{{ project.title }}</h3>
-            <p class="text-gray-600 text-sm mb-2">{{ project.description }}</p>
-            <p class="text-sm text-blue-500 mb-4">Category: {{ project.category?.name }}</p>
-            <p class="text-sm text-blue-500 mb-2" v-if="project.link">
-              <a :href="project.link" target="_blank" class="underline">View Live</a>
+            <h3 class="font-bold text-lg text-gray-800 transition-all duration-300">{{ project.title }}</h3>
+            <p class="text-gray-600 text-sm mb-2 transition-all duration-300">{{ project.description }}</p>
+            <p class="text-sm text-red-800 font-medium mb-4 transition-all duration-300">Category: {{ project.category?.name }}</p>
+            <p class="text-sm text-amber-600 font-medium mb-2 transition-all duration-300" v-if="project.link">
+              <a :href="project.link" target="_blank" class="underline hover:text-red-800 transition-all duration-300">View Live</a>
             </p>
-            <p class="text-xs text-gray-400">
+            <p class="text-xs text-gray-400 transition-all duration-300">
               Created: {{ new Date(project.createdAt).toLocaleString() }}
             </p>
-            <div class="flex justify-end space-x-2 mt-3">
-              <button @click="editProject(project)" class="text-yellow-600 hover:underline">
+            <div class="flex justify-end space-x-3 mt-4">
+              <button @click="editProject(project)" class="text-amber-600 hover:text-amber-800 font-medium transition-all duration-300">
                 Edit
               </button>
-              <button @click="deleteProject(project._id)" class="text-red-600 hover:underline">
+              <button @click="deleteProject(project._id)" class="text-red-600 hover:text-red-800 font-medium transition-all duration-300">
                 Delete
               </button>
             </div>
@@ -78,26 +85,26 @@
         <!-- Add/Edit Project Modal -->
         <div
           v-if="showProjectForm"
-          class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center"
+          class="fixed inset-0 bg-opacity-45 flex justify-center items-center backdrop-blur-sm transition-all duration-500"
         >
-          <div class="bg-white rounded-lg shadow-lg p-6 w-96 max-h-[90vh] overflow-y-auto">
-            <h3 class="text-lg font-semibold mb-4">
+          <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 max-h-[90vh] overflow-y-auto border-2 border-amber-400 transition-all duration-500">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 transition-all duration-500">
               {{ editingProject ? 'Edit Project' : 'Add Project' }}
             </h3>
 
-            <form @submit.prevent="saveProject" class="space-y-3">
+            <form @submit.prevent="saveProject" class="space-y-4">
               <input
                 v-model="form.title"
                 type="text"
                 placeholder="Title"
-                class="w-full border px-3 py-2 rounded"
+                class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-amber-50/50 transition-all duration-300"
                 required
               />
 
               <textarea
                 v-model="form.description"
                 placeholder="Description"
-                class="w-full border px-3 py-2 rounded"
+                class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-amber-50/50 transition-all duration-300"
                 required
               ></textarea>
 
@@ -105,7 +112,7 @@
                 v-model="form.link"
                 type="text"
                 placeholder="Project Link (optional)"
-                class="w-full border px-3 py-2 rounded"
+                class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-amber-50/50 transition-all duration-300"
               />
 
               <!-- ✅ File upload -->
@@ -113,12 +120,11 @@
                 type="file"
                 @change="handleFileUpload"
                 accept="image/*"
-                class="w-full border px-3 py-2 rounded"
+                class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-amber-50/50 transition-all duration-300"
               />
-
               <select
                 v-model="form.category"
-                class="w-full border px-3 py-2 rounded"
+                class="w-full border-2 border-amber-300 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-amber-50/50 transition-all duration-300"
                 required
               >
                 <option value="">Select Category</option>
@@ -131,17 +137,17 @@
                 </option>
               </select>
 
-              <div class="flex justify-end space-x-2 mt-3">
+              <div class="flex justify-end space-x-3 mt-4">
                 <button
                   type="button"
                   @click="cancelProject"
-                  class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                  class="px-4 py-2 bg-gray-300 rounded-xl hover:bg-gray-400 font-medium transition-all duration-300"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  class="px-4 py-2 bg-gradient-to-r from-red-800 to-amber-600 hover:from-red-900 hover:to-amber-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Save
                 </button>
@@ -153,39 +159,69 @@
 
       <!-- 🗂️ CATEGORIES TAB -->
       <section v-if="activeTab === 'categories'">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold">Manage Categories</h2>
-          <div>
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold text-gray-800 transition-all duration-500">Manage Categories</h2>
+          <div class="flex space-x-3">
             <input
               v-model="newCategory"
               placeholder="New Category"
-              class="border px-3 py-2 rounded mr-2"
+              class="border-2 border-amber-300 rounded-xl px-4 py-2 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 bg-amber-50/50 transition-all duration-300"
             />
             <button
               @click="addCategory"
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              class="bg-gradient-to-r from-red-800 to-amber-600 hover:from-red-900 hover:to-amber-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Add
             </button>
           </div>
         </div>
 
-        <ul class="space-y-2">
+        <ul class="space-y-3 transition-all duration-500">
           <li
             v-for="cat in categories"
             :key="cat._id"
-            class="flex justify-between items-center border-b pb-2"
+            class="flex justify-between items-center border-b-2 border-amber-200 pb-3 transition-all duration-300"
           >
-            <span>{{ cat.name }}</span>
+            <span class="text-gray-700 font-medium transition-all duration-300">{{ cat.name }}</span>
             <button
               @click="deleteCategory(cat._id)"
-              class="text-red-600 hover:underline"
+              class="text-red-600 hover:text-red-800 font-medium transition-all duration-300"
             >
               Delete
             </button>
           </li>
         </ul>
       </section>
+     
+     <!-- 💬 MESSAGES TAB -->
+      <section v-if="activeTab === 'messages'">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 transition-all duration-500">Messages</h2>
+
+        <div v-if="loading" class="text-gray-500 transition-all duration-500">Loading...</div>
+        <ul v-else class="space-y-4 transition-all duration-500">
+          <li
+            v-for="msg in messages"
+            :key="msg._id"
+            class="border-2 border-amber-300 rounded-2xl p-4 bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex justify-between items-start"
+          >
+            <div>
+              <p class="font-semibold text-gray-800 transition-all duration-300">{{ msg.name }} ({{ msg.email }})</p>
+              <p class="text-sm text-amber-600 font-medium transition-all duration-300">Subject: {{ msg.subject }}</p>
+              <p class="text-gray-700 mt-2 transition-all duration-300">{{ msg.message }}</p>
+              <p class="text-xs text-gray-400 mt-2 transition-all duration-300">
+                Sent: {{ new Date(msg.createdAt).toLocaleString() }}
+              </p>
+            </div>
+            <button
+              @click="deleteMessage(msg._id)"
+              class="text-red-600 hover:text-red-800 font-medium transition-all duration-300 ml-4"
+            >
+              Delete
+            </button>
+          </li>
+        </ul>
+      </section>
+
     </main>
   </div>
 </template>
@@ -194,6 +230,10 @@
 import { ref, onMounted } from 'vue'
 import api from '../service/api'
 import router from '../router'
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+const toast = useToast();
 
 const activeTab = ref('projects')
 const projects = ref([])
@@ -303,9 +343,32 @@ const logout = () => {
   localStorage.removeItem('token')
   router.push('/login')
 }
+const messages = ref([])
+
+const fetchMessages = async () => {
+  try {
+    const { data } = await api.get("/messages")
+    messages.value = data
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const deleteMessage = async (id) => {
+  if (confirm("Are you sure you want to delete this message?")) {
+    try {
+      await api.delete(`/messages/${id}`)
+      await fetchMessages()
+      toast.success('Message deleted successfully!')
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
 
 onMounted(() => {
   fetchProjects()
   fetchCategories()
+  fetchMessages()
 })
 </script>
