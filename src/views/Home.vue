@@ -4,7 +4,7 @@
 
     <!-- 🌐 Navbar -->
     <nav class="flex justify-between items-center px-6 py-4 shadow-sm backdrop-blur-md bg-white/95 sticky top-0 z-50 border-b border-amber-500">
-      <h1 class="text-medium font-light tracking-tight">The Dev <span class="font-bold text-sm  text-amber-800"> Corner</span></h1>
+      <h1 class="text-medium  italic font-light tracking-tight">The Dev <span class="font-bold text-sm  text-amber-800"> Corner</span></h1>
       <ul class="hidden md:flex space-x-6">
         <li><a href="#home" class="nav-link bg-red-50 text-red-600 font-medium px-4 py-2 rounded-lg hover:bg-red-200 transition">Home</a></li>
         <li><a href="#about" class="nav-link bg-red-50 text-red-600 font-medium px-4 py-2 rounded-lg hover:bg-red-200 transition">About</a></li>
@@ -87,7 +87,7 @@
 
     <!-- Paragraph -->
     <p
-      class="text-lg font-bold italics md:text-xl text-gray-800 leading-relaxed opacity-0 translate-y-4 transition-all duration-700 delay-500"
+      class="text-lg  italic font-bold  md:text-xl text-gray-800 leading-relaxed opacity-0 translate-y-4 transition-all duration-700 delay-500"
       :class="{ 'opacity-100 translate-y-0': showParagraph }"
     >
       I design and develop responsive, user-friendly web solutions that help ideas come to life.
