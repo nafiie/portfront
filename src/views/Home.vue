@@ -4,7 +4,7 @@
 
     <!-- 🌐 Navbar -->
     <nav class="flex justify-between items-center px-6 py-4 shadow-sm backdrop-blur-md bg-white/95 sticky top-0 z-50 border-b border-amber-500">
-      <h1 class="text-2xl font-bold tracking-tight">Nafii Portfolio</h1>
+      <h1 class="text-medium font-light tracking-tight">The Dev <span class="font-bold text-sm  text-amber-800"> Corner</span></h1>
       <ul class="hidden md:flex space-x-6">
         <li><a href="#home" class="nav-link bg-red-50 text-red-600 font-medium px-4 py-2 rounded-lg hover:bg-red-200 transition">Home</a></li>
         <li><a href="#about" class="nav-link bg-red-50 text-red-600 font-medium px-4 py-2 rounded-lg hover:bg-red-200 transition">About</a></li>
